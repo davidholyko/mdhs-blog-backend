@@ -7,6 +7,7 @@ const handle404 = customErrors.handle404
 const removeBlanks = require('../../lib/remove_blank_fields')
 // const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
+const Comment = require('../models/comment')
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
@@ -54,6 +55,8 @@ router.delete('/blogs/:id', (req, res, next) => {
     .then(handle404)
     .then(blog => {
       // requireOwnership(req, example)
+      const id = blog
+      Comment.deleteMany({blog: id}, (err, res) => { if (err) throw err })
       blog.remove()
     })
     .then(() => res.sendStatus(204))
