@@ -10,7 +10,7 @@ const router = express.Router()
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
-  Blog.find()
+  Blog.find().populate('comments')
     .then(blogs => {
       return blogs.map(blog => blog.toObject())
     })

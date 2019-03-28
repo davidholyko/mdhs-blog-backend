@@ -9,7 +9,8 @@ curl "${API}${URL_PATH}/${ID}" \
   --header "Content-Type: application/json" \
 --data '{
     "comment": {
-      "text": "'"${TEXT}"'"
+      "text": "'"${TEXT}"'",
+      "blog_id": "'"${BLOGID}"'"
     }
   }'
 
