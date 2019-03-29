@@ -10,7 +10,7 @@ const router = express.Router()
 
 // INDEX
 router.get('/comments', (req, res, next) => {
-  Comment.find()
+  Comment.find().populate('handle', 'handle')
     .then(comments => {
       return comments.map(comment => comment.toObject())
     })
