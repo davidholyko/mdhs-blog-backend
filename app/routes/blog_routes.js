@@ -11,7 +11,11 @@ const Comment = require('../models/comment')
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
-  Blog.find().populate('comments')
+  Blog.find().populate('comments').populate('handle')
+    // .then(blogs => blogs.forEach(blog => {
+    //   blog.handle = blog.handle.handle
+    //   return blog
+    // }))
     .then(blogs => {
       return blogs.map(blog => blog.toObject())
     })

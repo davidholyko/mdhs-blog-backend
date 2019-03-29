@@ -25,4 +25,10 @@ blogSchema.virtual('comments', {
   foreignField: 'blog'
 })
 
+blogSchema.virtual('handle', {
+  ref: 'User',
+  localField: 'owner',
+  foreignField: '_id'
+})
+
 module.exports = mongoose.model('Blog', blogSchema)
