@@ -10,7 +10,7 @@ const router = express.Router()
 
 // INDEX
 router.get('/comments', (req, res, next) => {
-  Comment.find()
+  Comment.find().populate('handle', 'handle')
     .then(comments => {
       return comments.map(comment => comment.toObject())
     })
@@ -31,7 +31,7 @@ router.post('/comments', requireToken, (req, res, next) => {
   req.body.comment.owner = req.user.id
   Comment.create(req.body.comment)
     .then(comment => {
-      res.status(201).json({ comment: comment.toObject() })
+      res.status(201).json({ comment: comment.populate('handle', 'handle').toObject() })
     })
     .catch(next)
 })

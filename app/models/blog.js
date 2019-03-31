@@ -9,6 +9,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  likes: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -23,6 +27,12 @@ blogSchema.virtual('comments', {
   ref: 'Comment',
   localField: '_id',
   foreignField: 'blog'
+})
+
+blogSchema.virtual('handle', {
+  ref: 'User',
+  localField: 'owner',
+  foreignField: '_id'
 })
 
 module.exports = mongoose.model('Blog', blogSchema)

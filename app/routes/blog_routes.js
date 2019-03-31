@@ -11,7 +11,7 @@ const Comment = require('../models/comment')
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
-  Blog.find().populate('comments')
+  Blog.find().populate('comments').populate('handle', 'handle').populate({path: 'comments', populate: {path: 'handle', select: 'handle'}})
     .then(blogs => {
       return blogs.map(blog => blog.toObject())
     })
@@ -63,5 +63,19 @@ router.delete('/blogs/:id', requireToken, (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+// Likes Routes
+// // UPDATE
+// router.patch('/like/:id', removeBlanks, (req, res, next) => {
+//   delete req.body.blog.owner
+//
+//   Blog.findById(req.params.id)
+//     .then(handle404)
+//     .then(blog => {
+//       blog.likes.push('id')
+//     })
+//     .then(() => res.sendStatus(204))
+//     .catch(next)
+// })
 
 module.exports = router
