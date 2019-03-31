@@ -66,16 +66,26 @@ router.delete('/blogs/:id', requireToken, (req, res, next) => {
 
 // Likes Routes
 // // UPDATE
-// router.patch('/like/:id', removeBlanks, (req, res, next) => {
-//   delete req.body.blog.owner
-//
-//   Blog.findById(req.params.id)
-//     .then(handle404)
-//     .then(blog => {
-//       blog.likes.push('id')
-//     })
-//     .then(() => res.sendStatus(204))
-//     .catch(next)
-// })
+router.patch('/likes/:id', requireToken, removeBlanks, (req, res, next) => {
+  const liker = req.body.blog.likes
+  console.log(liker)
+  delete req.body.blog
+
+  Blog.findById(req.params.id)
+    .then(handle404)
+    .then(blog => {
+      const hasLiked = blog.likes.some(like => {
+        return like.toString() === liker
+      })
+      console.log(hasLiked)
+      if (hasLiked) {
+        return blog.update({$pull: {likes: liker}})
+      } else {
+        return blog.update({$push: {likes: liker}})
+      }
+    })
+    .then(blog => res.sendStatus(204))
+    .catch(next)
+})
 
 module.exports = router
