@@ -9,10 +9,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  likes: {
+  likes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  },
+  }],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -21,6 +21,10 @@ const blogSchema = new mongoose.Schema({
 }, {
   timestamps: true,
   toObject: {virtuals: true}
+})
+
+blogSchema.virtual('likeTotal').get(function () {
+  return this.likes.length
 })
 
 blogSchema.virtual('comments', {
@@ -33,6 +37,12 @@ blogSchema.virtual('handle', {
   ref: 'User',
   localField: 'owner',
   foreignField: '_id'
+})
+
+blogSchema.virtual('score').get(function () {
+  const now = Date.now()
+  const likeAdjust = this.likeTotal * 3600000
+  return (now - this.createdAt) - likeAdjust
 })
 
 module.exports = mongoose.model('Blog', blogSchema)
