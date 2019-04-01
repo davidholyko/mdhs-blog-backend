@@ -11,7 +11,7 @@ const Comment = require('../models/comment')
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
-  Blog.find().populate('comments').populate('handle', 'handle').populate({path: 'comments', populate: {path: 'handle', select: 'handle'}}).sort({score: -1})
+  Blog.find().populate('comments').populate('handle', 'handle').populate({path: 'comments', populate: {path: 'handle', select: 'handle'}})
     .then(blogs => {
       return blogs.map(blog => blog.toObject())
     })
