@@ -1,9 +1,9 @@
 # MDHS Blog Backend
 Hi all and welcome to the GitHub Repo for the MDHS Blog back end.
 This project is a blog comment where users are able to log in, post, and comment.
-This repo is for the API and back end of this project. For the front end please visit https://github.com/m-d-h-s/mdhs-blog-frontend
-The deployed api is available at https://mdhs-blog-backend.herokuapp.com/
-The deployed site is available at
+This repo is for the API and back end of this project. For the front end please visit <https://github.com/m-d-h-s/mdhs-blog-frontend>
+The deployed api is available at <https://mdhs-blog-backend.herokuapp.com/>
+The deployed site is available at <https://m-d-h-s.github.io/mdhs-blog-frontend/>
 
 ## Description
 Its 1999. Myspace is the rage. Enter, the MDHS Blog. Can this new blogging platform make a dent?
@@ -40,9 +40,9 @@ To keep on track we've had two stand ups per day and
 - Check syntax
 - Check if the code thats giving you trouble works somewhere else
 - Simplify the code/process
-- console log paramaters
-- console log output
-- try running code again
+- Console log paramaters
+- Console log output
+- Try running code again
 - Try do do it differently if none of the above worked and you still get the same error message
 
 
@@ -55,9 +55,9 @@ user|-has many<|Blogs|-has many<|Comments|-owned by-|user
 ```
 
 ## Known Issues
-Site is not pretty
+Site is not pretty (in progress)
 
-## Wirerames
+## Wireframes
 Wireframe is available at the bottom of the [planning document](https://docs.google.com/document/d/1TxQ9B5Qk-sSy-RYfSC8yyhHI-wttremlUV2TkMCKOP0/edit?usp=sharing)
 
 ## User stories
@@ -78,21 +78,22 @@ As a signed in user, I would to delete my blog posts and comments.
   - find a better way to identify and catalog necessary UX improvements
 
 - UI Improvements
-  - Improve color scheme
-  - Create a visual heirarchy
-  - move buttons to more intuative locations
-  - create a dropdown for user actions
+  - Improve color scheme (in progress)
+  - Create a visual hierarchy (in progress)
+  - move buttons to more intuative locations (complete)
+  - create a dropdown for user actions (complete)
   - create a user profile page
 
 - Features
   - Tagging
-  - Search Bar
+  - Search Bar (complete)
   - Add a gps pin to a post
   - Allow users to upload photos
-  - Give users display names
-  -
+  - Give users display names (complete)
+  - Likes feature (complete)
+
 -DB Changes
-  - Require users to create a display name
+  - Require users to create a display name (complete)
   - Add tagging features
 
 
@@ -239,6 +240,7 @@ HTTP/1.1 204 No Content
 | GET     | `/blogs/:id`         | `blogs#show`     |
 | PATCH   | `/blogs/:id`         | `blogs#update`   |
 | DELETE  | `/blogs/:id`         | `blogs#destroy`  |
+| PATCH   |  `/likes/:id`        | `blogs#update`   |
 #### POST /blogs
 Request:
 
