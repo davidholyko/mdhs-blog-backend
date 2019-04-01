@@ -1,12 +1,12 @@
-# MDHS Blog Backend
-Hi all and welcome to the GitHub Repo for the MDHS Blog back end.
+# LetterBox Backend
+Hi all and welcome to the GitHub Repo for the LetterBox back end.
 This project is a blog comment where users are able to log in, post, and comment.
 This repo is for the API and back end of this project. For the front end please visit <https://github.com/m-d-h-s/mdhs-blog-frontend>
 The deployed api is available at <https://mdhs-blog-backend.herokuapp.com/>
 The deployed site is available at <https://m-d-h-s.github.io/mdhs-blog-frontend/>
 
 ## Description
-Its 1999. Myspace is the rage. Enter, the MDHS Blog. Can this new blogging platform make a dent?
+Its 1999. Myspace is the rage. Enter, the LetterBox. Can this new blogging platform make a dent?
 Probably not but it was fun to make.
 
 ## Technology
@@ -55,7 +55,7 @@ user|-has many<|Blogs|-has many<|Comments|-owned by-|user
 ```
 
 ## Known Issues
-Site is not pretty (in progress)
+None
 
 ## Wireframes
 Wireframe is available at the bottom of the [planning document](https://docs.google.com/document/d/1TxQ9B5Qk-sSy-RYfSC8yyhHI-wttremlUV2TkMCKOP0/edit?usp=sharing)
