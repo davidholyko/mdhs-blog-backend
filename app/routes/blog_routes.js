@@ -11,7 +11,7 @@ const Comment = require('../models/comment')
 
 // INDEX
 router.get('/blogs', (req, res, next) => {
-  Blog.find().populate('comments').populate('handle', 'handle').populate({path: 'comments', populate: {path: 'handle', select: 'handle'}})
+  Blog.find().populate('comments').populate('handle', 'handle').populate({path: 'comments', populate: {path: 'handle', select: 'handle'}}).sort({score: -1})
     .then(blogs => {
       return blogs.map(blog => blog.toObject())
     })
@@ -68,7 +68,6 @@ router.delete('/blogs/:id', requireToken, (req, res, next) => {
 // // UPDATE
 router.patch('/likes/:id', requireToken, removeBlanks, (req, res, next) => {
   const liker = req.body.blog.likes
-  console.log(liker)
   delete req.body.blog
 
   Blog.findById(req.params.id)
@@ -77,7 +76,6 @@ router.patch('/likes/:id', requireToken, removeBlanks, (req, res, next) => {
       const hasLiked = blog.likes.some(like => {
         return like.toString() === liker
       })
-      console.log(hasLiked)
       if (hasLiked) {
         return blog.update({$pull: {likes: liker}})
       } else {

@@ -17,6 +17,14 @@ const blogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  score: {
+    type: Number,
+    get: function () {
+      const now = Date.now()
+      const likeAdjust = this.likeTotal * 3600000
+      return (now - this.createdAt) - likeAdjust
+    }
   }
 }, {
   timestamps: true,
@@ -37,6 +45,12 @@ blogSchema.virtual('handle', {
   ref: 'User',
   localField: 'owner',
   foreignField: '_id'
+})
+
+blogSchema.virtual('vscore').get(function () {
+  const now = Date.now()
+  const likeAdjust = this.likeTotal * 3600000
+  return (now - this.createdAt) - likeAdjust
 })
 
 module.exports = mongoose.model('Blog', blogSchema)
