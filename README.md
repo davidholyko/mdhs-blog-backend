@@ -451,4 +451,4 @@ curl "https://mdhs-blog-api.herokuapp.com/comments/${ID}" \
 Add Settings > Config Vars
 
 KEY=MONGODB_URI
-VALUE=mongodb+srv://username:password@cluster0.ycbqp.mongodb.net/mdhs-blog-api
+VALUE=mongodb://username:password@cluster0.ycbqp.mongodb.net/mdhs-blog-api
